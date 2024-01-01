@@ -6,29 +6,43 @@
 
 body {
   height: 100vh;
-  background-color: rgb(186, 186, 186);
+  background-color: rgb(33, 33, 33);
   display: grid;
   place-items: center;
+  transition: all 0.3s ease-in-out;
 }
 
 .toggle {
-  width: 150px;
+  width: 100px;
   height: 50px;
-  padding: 5px;
   position: relative;
+  cursor: pointer;
   background-color: white;
   border-radius: 50px;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  -ms-border-radius: 50px;
-  -o-border-radius: 50px;
 }
 .toggle #checkbox {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 20px;
-  width: 20px;
-  border: 2px solid #c9c9c9;
-  background-color: #dedbdb;
+  top: 10px;
+  left: 20px;
+  z-index: -1;
+}
+.toggle .cycle {
+  position: absolute;
+  z-index: 10;
+  top: 3px;
+  left: 3px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50px;
+  background-color: rgb(33, 33, 33);
+  transition: all 0.3s ease;
+}
+.toggle .cycle.light {
+  background-color: white;
+}
+.toggle #checkbox:checked + .cycle {
+  left: calc(100% - 50px);
+}
+.toggle #checkbox:checked + .cycle.light {
+  right: 3px;
 }/*# sourceMappingURL=main.css.map */
