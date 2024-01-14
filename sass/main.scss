@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-$backgroundColor: rgb(33, 33, 33);
+$backgroundColor: rgb(255, 255, 255);
 $toggleCheckedColor: red;
 
 @mixin backgroundColor($bg) {
@@ -23,42 +23,68 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-.toggle {
-  width: 100px;
-  height: 50px;
+body.dark {
+  background-color: #222;
+}
+
+$background-color_1: #ccc;
+$background-color_2: white;
+$background-color_3: #222;
+
+/* Rounded sliders */
+.switch {
   position: relative;
-  cursor: pointer;
-  @include backgroundColor(white);
-  @include borderRadius();
-
-  #checkbox {
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    z-index: -1;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
-
-  .cycle {
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $background-color_3;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  &:before {
     position: absolute;
-    z-index: 10;
-    top: 3px;
-    left: 3px;
-    width: 45px;
-    height: 45px;
-    @include borderRadius();
-    @include backgroundColor($backgroundColor);
-    transition: all 0.3s ease;
-
-    &.light {
-      @include backgroundColor(white);
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: $background-color_2;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+  }
+}
+input {
+  &:checked {
+    + {
+      .slider {
+        background-color: $background-color_1;
+        &:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+        }
+      }
     }
   }
-
-  #checkbox:checked + .cycle {
-    left: calc(100% - 50px);
-  }
-
-  #checkbox:checked + .cycle.light {
-    right: 3px;
+}
+.slider.round {
+  border-radius: 34px;
+  &:before {
+    border-radius: 50%;
   }
 }
